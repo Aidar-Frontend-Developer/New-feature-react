@@ -4,3 +4,4 @@
 -   Children Render Props
 -   Fragments
 -   Reusable portal
+-   Modal component using portal
