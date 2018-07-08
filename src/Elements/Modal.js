@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Portal from './Portal'
+import Icon from './Icon'
+import { Portal, absolute } from 'Utilities'
+import { Card } from './Cards'
 
 export default class Modal extends Component {
     render() {
@@ -11,7 +13,9 @@ export default class Modal extends Component {
                 {on && (
                     <ModalWrapper>
                         <ModalCard>
-                            <CloseButton onClick={toggle}>Close</CloseButton>
+                            <CloseButton onClick={toggle}>
+                                <Icon name="close" />
+                            </CloseButton>
                             <div>{children}</div>
                         </ModalCard>
                         <Background onClick={toggle} />
@@ -23,9 +27,7 @@ export default class Modal extends Component {
 }
 
 const ModalWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
+   ${absolute({})};
     width: 100%;
     height: 100%;
     display: flex;
@@ -33,26 +35,25 @@ const ModalWrapper = styled.div`
     align-items: center;
 `;
 
-const ModalCard = styled.div`
+const ModalCard = Card.extend`
     position: relative;
-    background: #fff;
-    padding: 15px;
-    border-raduis: 5px;
-    box-shadow: 2px 2px 10px rgba(0,0,0, .3);
     z-index: 1;
     min-width: 320px;
+    margin-bottom: 100px;
 `;
 
 const CloseButton = styled.button`
-    position: absolute;
-    top: 0;
-    right: 0;
+    ${absolute({
+        y: 'top',
+        x: 'right'
+    })};
+    border: none;
+    background: transparent;
+    padding: 10px;
 `;
 
 const Background = styled.button`
-    position: absolute;
-    top: 0;
-    left: 0;
+   ${absolute({})};
     width: 100%;
     height: 100%;
     background: #000;
